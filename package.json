@@ -6,7 +6,7 @@
   "scripts": {
     "deploy": "gh-pages -d build",
     "stats": "webpack --profile --json > stats.json",
-    "build": "webpack",
+    "build": "kotatsu build client --babel --config ./webpack.config.js -o build",
     "start": "kotatsu serve --babel --config ./webpack.config.js"
   },
   "keywords": [
