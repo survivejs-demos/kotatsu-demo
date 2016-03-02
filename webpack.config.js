@@ -8,7 +8,7 @@ const PATHS = {
 };
 
 module.exports = {
-  entry: PATHS.style,
+  entry: [path.join(PATHS.app, 'index.jsx'), PATHS.style],
   module: {
     loaders: [
       {

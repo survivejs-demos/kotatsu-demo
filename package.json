@@ -7,7 +7,7 @@
     "deploy": "gh-pages -d build",
     "stats": "webpack --profile --json > stats.json",
     "build": "webpack",
-    "start": "kotatsu serve --babel app/index.jsx --config ./webpack.config.js"
+    "start": "kotatsu serve --babel --config ./webpack.config.js"
   },
   "keywords": [
     "webpack",
