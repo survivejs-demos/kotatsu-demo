@@ -24,6 +24,11 @@ const common = {
 
 if(TARGET === 'build') {
   module.exports = merge(common, {
+    output: {
+      path: PATHS.build,
+      filename: '[name].[chunkhash].js',
+      chunkFilename: '[chunkhash].js'
+    },
     plugins: [
       // Setting DefinePlugin affects React library size!
       new webpack.DefinePlugin({
