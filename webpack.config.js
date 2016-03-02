@@ -1,4 +1,5 @@
 const path = require('path');
+const webpack = require('webpack');
 
 const TARGET = process.env.npm_lifecycle_event;
 const PATHS = {
@@ -17,5 +18,11 @@ module.exports = {
         include: PATHS.app
       }
     ]
-  }
+  },
+  plugins: [
+    // Setting DefinePlugin affects React library size!
+    new webpack.DefinePlugin({
+      'process.env.NODE_ENV': '"production"'
+    })
+  ]
 };
