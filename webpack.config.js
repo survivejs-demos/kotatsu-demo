@@ -1,5 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
+const merge = require('webpack-merge');
 
 const TARGET = process.env.npm_lifecycle_event;
 const PATHS = {
@@ -8,7 +9,7 @@ const PATHS = {
   style: path.join(__dirname, 'app/main.css')
 };
 
-module.exports = {
+const common = {
   entry: [path.join(PATHS.app, 'index.jsx'), PATHS.style],
   module: {
     loaders: [
@@ -18,11 +19,19 @@ module.exports = {
         include: PATHS.app
       }
     ]
-  },
-  plugins: [
-    // Setting DefinePlugin affects React library size!
-    new webpack.DefinePlugin({
-      'process.env.NODE_ENV': '"production"'
-    })
-  ]
+  }
 };
+
+if(TARGET === 'build') {
+  module.exports = merge(common, {
+    plugins: [
+      // Setting DefinePlugin affects React library size!
+      new webpack.DefinePlugin({
+        'process.env.NODE_ENV': '"production"'
+      })
+    ]
+  });
+}
+else {
+  module.exports = common;
+}
